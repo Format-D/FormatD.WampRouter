@@ -1,0 +1,25 @@
+
+FormatD:
+  WampRouter:
+    defaultInstance: 'default'
+    instances:
+      default:
+        transports:
+          -
+            implementationClass: '\Thruway\Transport\RatchetTransportProvider'
+            arguments: ['0.0.0.0', 8080]
+        authentication:
+          providers:
+            -
+              realms: ['default']
+              implementationClass: '\FormatD\WampRouter\Domain\Model\HmacAuthProvider'
+        realms:
+          -
+            name: 'default'
+            authorizationRules:
+              -
+                role: 'authenticated_user'
+                action: 'subscribe'
+                uri: ''
+                allow: true
+            internalClients: []

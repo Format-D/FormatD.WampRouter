@@ -4,7 +4,9 @@
     "type": "neos-package",
     "license": "MIT",
     "require": {
-        "neos/flow": ">=4.0"
+        "neos/flow": ">=4.0",
+        "voryx/Thruway": "^0.5.3",
+        "formatd/hmac-authentication": "~1.0.0"
     },
     "suggest": {
     },

@@ -12,7 +12,7 @@ FormatD:
           providers:
             -
               realms: ['default']
-              implementationClass: '\FormatD\WampRouter\Domain\Model\HmacAuthProvider'
+              implementationClass: '\FormatD\WampRouter\Wamp\Authentication\HmacAuthProvider'
         realms:
           -
             name: 'default'

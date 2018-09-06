@@ -1,5 +1,5 @@
 <?php
-namespace FormatD\WampRouter\Domain\Model;
+namespace FormatD\WampRouter\Wamp\Authentication;
 
 use Neos\Flow\Annotations as Flow;
 

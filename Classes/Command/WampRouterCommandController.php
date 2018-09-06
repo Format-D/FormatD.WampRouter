@@ -26,7 +26,6 @@ class WampRouterCommandController extends \Neos\Flow\Cli\CommandController {
 	 */
 	public function runCommand($instance = NULL)
 	{
-
 		$now = new \DateTime('now');
 
 	    if (!$instance) {
@@ -57,9 +56,12 @@ class WampRouterCommandController extends \Neos\Flow\Cli\CommandController {
 			foreach ($realmConfiguration['internalClients'] as $clientConfiguration) {
 				$this->outputLine('Configuring internal client "' . $clientConfiguration['implementationClass'] . '"');
 				$clientClassName = $clientConfiguration['implementationClass'];
-				$client = new $clientClassName();
+				$client = new $clientClassName($realmConfiguration['name']);
 				$router->addInternalClient($client);
 			}
+
+			// generic RPC client for annotated methods
+			$router->addInternalClient(new \FormatD\WampRouter\Wamp\Rpc\RpcClient($realmConfiguration['name']));
 		}
 
 		// authentication providers

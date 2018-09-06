@@ -1,11 +1,12 @@
 {
     "name": "formatd/wamp-router",
-    "description": "Neos Flow package that wraps Thruway (a WAMP (Web Application Messaging Protocol) router implementation) for use in neos flow applications.",
+    "description": "Neos Flow package that wraps Thruway (a WAMP (Web Application Messaging Protocol) router implementation) for use in Flow applications.",
     "type": "neos-package",
     "license": "MIT",
     "require": {
         "neos/flow": ">=4.0",
         "voryx/Thruway": "^0.5.3",
+        "thruway/pawl-transport": "^0.5.0",
         "formatd/hmac-authentication": "~1.0.0"
     },
     "suggest": {

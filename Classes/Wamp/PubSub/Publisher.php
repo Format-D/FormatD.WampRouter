@@ -16,10 +16,10 @@ class Publisher {
 	 * @param string $topic
 	 * @param array $args
 	 * @param \Thruway\Authentication\ClientAuthenticationInterface $authenticator
-	 * @param string $address (IP and Port of the WampRouter)
+	 * @param string $address (Protocol, IP and Port of the WampRouter)
 	 * @return string
 	 */
-	public function publish($realm, $topic, $args, $authenticator = NULL, $address = '127.0.0.1:8080') {
+	public function publish($realm, $topic, $args, $authenticator = NULL, $address = 'ws://127.0.0.1:8080') {
 
 		// workaound to prevent thruway to output to the browser
 		\Thruway\Logging\Logger::set(new \Psr\Log\NullLogger());
@@ -27,7 +27,7 @@ class Publisher {
 		$result     = null;
 		$connection = new \Thruway\Connection([
 			'realm' => $realm,
-			'url'   => 'ws://' . $address,
+			'url'   => $address,
 		]);
 
 		$connection->getClient()->setAttemptRetry(false);
@@ -52,13 +52,13 @@ class Publisher {
 		});
 
 		$connection->on('error', function ($errorCode, $message) use ($topic) {
-			throw new \FormatD\WampRouter\Exception('Error during publish to topic "' . $topic . '": ' . $errorCode);
+			throw new \FormatD\WampRouter\Exception('Error during publish to topic "' . $topic . '": Error ' . $errorCode);
 		});
 
 		$connection->open();
 
 		if ($result !== 'published') {
-			throw new \FormatD\WampRouter\Exception('Error during publish to topic "' . $topic . '": ' . $result);
+			throw new \FormatD\WampRouter\Exception('Error during publish to topic "' . $topic . '": Result ' . $result);
 		}
 
 		return $result;
